@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>ТрансЛогистик — Главная</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">Транс<span>Логистик</span></div>
+            <div class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="services.html">Услуги</a>
+                <a href="about.html">О нас</a>
+                <a href="news.html">Новости</a>
+                <a href="reviews.html">Отзывы</a>
+                <a href="contacts.html">Контакты</a>
+                <a href="login.html">Вход</a>
+            </div>
+        </nav>
+    </div>
+    <section style="padding-top: 20px;">
+        <div class="container">
+            <div style="max-width: 800px; margin-bottom: 40px;">
+                <h1 style="font-size: 44px; font-weight: 800; line-height: 1.2; color: var(--primary);">Надёжная доставка по Ярославлю и России</h1>
+                <p style="font-size: 20px; color: var(--text-muted); margin-top: 20px;">Перевозка сборных грузов, экспедирование, ж/д отправки — прозрачно и быстро.</p>
+            </div>
+
+            <!--Кальк + Трекер-->
+            <div class="tools-grid">
+    <div class="tool-card">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+            <img src="images/4.png" alt="Калькулятор" style="width: 48px; height: 48px;">
+            <h3 style="margin: 0;">Калькулятор стоимости</h3>
+        </div>
+        <div class="form-group">
+            <label>Откуда</label>
+            <select id="fromCity">
+                <option>Ярославль</option>
+                <option>Москва</option>
+                <option>Санкт-Петербург</option>
+                <option>Кострома</option>
+            </select>
+        </div>
+                    <div class="form-group">
+                        <label>Куда</label>
+                        <select id="toCity">
+                            <option>Москва</option>
+                            <option>Ярославль</option>
+                            <option>Санкт-Петербург</option>
+                            <option>Вологда</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Вес (кг)</label>
+                        <input type="number" id="weight" placeholder="Например: 150">
+                    </div>
+                    <div class="form-group">
+                        <label>Объём (м³)</label>
+                        <input type="number" id="volume" placeholder="0.5">
+                    </div>
+                    <button class="btn" id="calcBtn">Рассчитать</button>
+                    <div id="calcResult" class="calc-result">
+                        Примерная стоимость: <span id="priceValue">0</span> ₽
+                    </div>
+                </div>
+                <!-- Карточка трекера-->
+               <div class="tool-card">
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 24px;">
+        <img src="images/3.png" alt="Трекер" style="width: 40px; height: 40px;">
+        <h3 style="margin: 0;">Трекер груза</h3>
+    </div>
+    <div class="form-group">
+        <label>Номер накладной</label>
+        <input type="text" id="trackNumber" placeholder="TR-2026-001">
+    </div>
+
+    <button class="btn btn-outline" id="trackBtn">Отследить</button>
+
+    <div id="trackResult" class="tracker-result">
+        Статус: <span id="trackStatus">—</span>
+    </div>
+
+    <p style="font-size: 14px; color: var(--text-muted); margin-top: 16px;">
+        Тестовый номер: TR-2026-001 (в пути), TR-2026-100 (доставлен)
+    </p>
+</div>
+        </div>
+    </section>
+      <!-- Моя карта -->
+    <section style="padding: 60px 0; background: var(--gray-bg);">
+    <div class="container">
+    <h2 class="section-title" style="text-align: center; margin-bottom: 40px;">Как нас найти</h2>
+    <div style="border-radius: 24px; overflow: hidden; box-shadow: var(--shadow);">
+        <script type="text/javascript" charset="utf-8" async 
+            src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A84764a540abe36a0e31f36c940568ebd04f6da2df291237d63ab663a53892098&amp;width=100%25&amp;height=400&amp;lang=ru_RU&amp;scroll=true">
+        </script>
+    </div>
+    <p style="text-align: center; margin-top: 24px; color: var(--text-muted);">
+        г. Ярославль, ул. Строителей, 5
+    </p>
+</div>
+</section>
+
+    <!-- Преимущества -->
+ <section style="background: #ffffff; padding: 80px 0;">
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 50px;">
+            <h2 class="section-title" style="margin-bottom: 16px;">Почему выбирают нас</h2>
+            <p style="color: var(--text-muted); font-size: 18px; max-width: 600px; margin: 0 auto;">
+                4 причины работать с нами
+            </p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;">
+            
+            <div style="background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 20px -10px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #f1f5f9;">
+    <div style="height: 160px; background-image: url('images/1.jpg'); background-size: cover; background-position: center 35%;"></div>
+    <div style="padding: 28px 24px 32px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="width: 48px; height: 48px; background: var(--primary); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+    <img src="images/5.png" style="width: 28px; height: 28px; filter: brightness(0) invert(1);">
+</div>
+            <h3 style="font-size: 22px; font-weight: 700; color: var(--primary); margin: 0;">Точно в срок</h3>
+        </div>
+        <p style="color: var(--text-muted); line-height: 1.6; margin: 0; font-size: 16px;">
+            Доставка 95% грузов без опозданий. Собственный автопарк и оптимизация маршрутов.
+        </p>
+    </div>
+</div>
+            
+            <div style="background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 35px -10px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #f1f5f9;">
+                <div style="height: 160px; background-image: url('images/7.jpg'); background-size: cover; background-position: center;"></div>
+                <div style="padding: 28px 24px 32px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                        <div style="width: 48px; height: 48px; background: var(--primary); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+                           <img src="images/6.png" style="width: 35px; height: 35px; filter: brightness(0) invert(1);">
+                        </div>
+                        <h3 style="font-size: 22px; font-weight: 700; color: var(--primary); margin: 0;">Страхование</h3>
+                    </div>
+                    <p style="color: var(--text-muted); line-height: 1.6; margin: 0; font-size: 16px;">
+                        Полное покрытие рисков. Страхуем груз на 100% стоимости.
+                    </p>
+                </div>
+            </div>
+            
+            <div style="background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 35px -10px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #f1f5f9;">
+    <div style="height: 160px; background-image: url('images/1.webp'); background-size: cover; background-position: center 25%;"></div>
+    <div style="padding: 28px 24px 32px;">
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+            <div style="width: 48px; height: 48px; background: var(--primary); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+                <img src="images/7.png" style="width: 28px; height: 28px; filter: brightness(0) invert(1);">
+            </div>
+            <h3 style="font-size: 22px; font-weight: 700; color: var(--primary); margin: 0;">Онлайн-контроль</h3>
+        </div>
+        <p style="color: var(--text-muted); line-height: 1.6; margin: 0; font-size: 16px;">
+            Трекинг 24/7. Знайте, где ваш груз в реальном времени.
+        </p>
+    </div>
+</div>
+            
+            <div style="background: white; border-radius: 28px; overflow: hidden; box-shadow: 0 20px 35px -10px rgba(0,0,0,0.05); transition: 0.3s; border: 1px solid #f1f5f9;">
+                <div style="height: 160px; background-image: url('images/8.jpg'); background-size: cover; background-position: center;"></div>
+                <div style="padding: 28px 24px 32px;">
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px;">
+                        <div style="width: 48px; height: 48px; background: var(--primary); border-radius: 16px; display: flex; align-items: center; justify-content: center;">
+                            <img src="images/8.png" style="width: 28px; height: 28px; filter: brightness(0) invert(1);">
+                        </div>
+                        <h3 style="font-size: 22px; font-weight: 700; color: var(--primary); margin: 0;">Сборные грузы</h3>
+                    </div>
+                    <p style="color: var(--text-muted); line-height: 1.6; margin: 0; font-size: 16px;">
+                        Экономия до 30%. Платите только за место в кузове.
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+   <section style="padding: 80px 0;">
+    <div class="container">
+        <h2 class="section-title" style="text-align: center; margin-bottom: 50px;">Основные услуги</h2>
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+
+            <div style="position: relative; border-radius: 24px; overflow: hidden; height: 340px; box-shadow: var(--shadow);">
+                <div style="position: absolute; width: 100%; height: 100%; background-image: url('images/5.jpg'); background-size: cover; background-position: center; filter: brightness(0.4);"></div>
+                <div style="position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; color: white;">
+                    <h3 style="font-size: 26px; margin-bottom: 8px; color: white;">Сборные грузы</h3>
+                    <p style="color: rgba(255,255,255,0.9); margin-bottom: 16px;">Объединяем отправки для снижения цены.</p>
+                    <a href="#" style="color: white; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                        Подробнее <span style="font-size: 20px;">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <div style="position: relative; border-radius: 24px; overflow: hidden; height: 340px; box-shadow: var(--shadow);">
+                <div style="position: absolute; width: 100%; height: 100%; background-image: url('images/6.jpg'); background-size: cover; background-position: center; filter: brightness(0.4);"></div>
+                <div style="position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; color: white;">
+                    <h3 style="font-size: 26px; margin-bottom: 8px; color: white;">Междугородние</h3>
+                    <p style="color: rgba(255,255,255,0.9); margin-bottom: 16px;">Регулярные рейсы в 50+ городов.</p>
+                    <a href="#" style="color: white; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                        Подробнее <span style="font-size: 20px;">→</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Экспедирование -->
+            <div style="position: relative; border-radius: 24px; overflow: hidden; height: 340px; box-shadow: var(--shadow);">
+                <div style="position: absolute; width: 100%; height: 100%; background-image: url('images/5.avif'); background-size: cover; background-position: center; filter: brightness(0.4);"></div>
+                <div style="position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 30px; color: white;">
+                    <h3 style="font-size: 26px; margin-bottom: 8px; color: white;">Экспедирование</h3>
+                    <p style="color: rgba(255,255,255,0.9); margin-bottom: 16px;">Сопровождение и документы под ключ.</p>
+                    <a href="#" style="color: white; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 8px;">
+                        Подробнее <span style="font-size: 20px;">→</span>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+    <!-- валидация -->
+    <section style="background: var(--gray-bg);">
+        <div class="container">
+            <h2 class="section-title">Остались вопросы?</h2>
+            <p class="section-desc">Напишите нам — ответим в течение 2 часов</p>
+            <div class="feedback-form" id="feedbackForm">
+                <div class="form-row">
+                    <input type="text" id="name" placeholder="Ваше имя">
+                    <div id="nameError" class="error-message">Введите имя</div>
+                </div>
+                <div class="form-row">
+                    <input type="tel" id="phone" placeholder="Телефон">
+                    <div id="phoneError" class="error-message">Введите корректный телефон</div>
+                </div>
+                <div class="form-row">
+                    <input type="email" id="email" placeholder="E-mail">
+                    <div id="emailError" class="error-message">Введите e-mail</div>
+                </div>
+                <div class="form-row">
+                    <textarea id="message" rows="3" placeholder="Сообщение"></textarea>
+                    <div id="messageError" class="error-message">Напишите сообщение</div>
+                </div>
+                <button class="btn" id="sendFeedback">Отправить</button>
+                <p style="margin-top: 16px; color: green; display: none;" id="successMsg">✓ Сообщение отправлено (демо)</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-logo">ТрансЛогистик</div>
+                    <p style="color: #cbd5e1;">© 2026 Транспортная компания.<br>Все права защищены.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 style="color: white; margin-bottom: 16px;">Навигация</h4>
+                    <a href="index.html">Главная</a>
+                    <a href="services.html">Услуги</a>
+                    <a href="about.html">О компании</a>
+                    <a href="news.html">Новости</a>
+                </div>
+                <div class="footer-links">
+                    <h4 style="color: white; margin-bottom: 16px;">Инфо</h4>
+                    <a href="reviews.html">Отзывы</a>
+                    <a href="contacts.html">Контакты</a>
+                    <a href="login.html">Авторизация</a>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 16px;">Контакты</h4>
+                    <p style="color: #cbd5e1;">г. Ярославль, ул. Строителей, 5</p>
+                    <p style="color: #cbd5e1; margin-top: 8px;">+7 (4852) 00-00-00</p>
+                    <p style="color: #cbd5e1;">info@translogistic.ru</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

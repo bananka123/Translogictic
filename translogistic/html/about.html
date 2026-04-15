@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О компании — ТрансЛогистик</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">Транс<span>Логистик</span></div>
+            <div class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="services.html">Услуги</a>
+                <a href="about.html">О нас</a>
+                <a href="news.html">Новости</a>
+                <a href="reviews.html">Отзывы</a>
+                <a href="contacts.html">Контакты</a>
+                <a href="login.html">Вход</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="index.html">Главная</a> / <span>О компании</span>
+        </div>
+        
+        <h1 class="page-title">О компании</h1>
+        
+        <div class="two-columns">
+            <!-- Левая колонка с текстом -->
+           <!-- Левый блок с текстом - добавьте stats-block -->
+<div class="content-block">
+    <div class="about-text">
+        <h2 style="color: var(--primary); margin-bottom: 20px;">История компании</h2>
+        <p style="margin-bottom: 20px;">ТрансЛогистик был основан в 2010 году в Ярославле. Мы начинали с одного автомобиля и небольшого склада, но благодаря ответственному подходу и ориентации на потребности клиентов, нам удалось вырасти в региональную транспортную компанию с собственным автопарком и филиалами в соседних областях.</p>
+        
+        <h2 style="color: var(--primary); margin: 30px 0 20px;">Миссия и ценности</h2>
+        <p style="margin-bottom: 15px;"><strong>Наша миссия:</strong> обеспечивать надежную и быструю доставку грузов, делая логистику простой и прозрачной для каждого клиента.</p>
+        <p><strong>Наши ценности:</strong> честность, пунктуальность, ориентация на клиента и постоянное развитие.</p>
+        
+        <!-- БЛОК СТАТИСТИКИ (ЗАМЕНИТЕ ваш блок на этот) -->
+        <div class="stats-block">
+            <h3 style="color: var(--primary); margin-bottom: 15px;">Цифры и факты</h3>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <p>15+</p>
+                    <p>лет на рынке</p>
+                </div>
+                <div class="stat-item">
+                    <p>100 000+</p>
+                    <p>довольных клиентов</p>
+                </div>
+                <div class="stat-item">
+                    <p>50+</p>
+                    <p>единиц техники</p>
+                </div>
+                <div class="stat-item">
+                    <p>24/7</p>
+                    <p>поддержка</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Правый блок с командой -->
+<div class="sidebar">
+    <h3 style="color: var(--primary); margin-bottom: 24px; font-size: 22px;">Наша команда</h3>
+    <div class="team-grid">
+        <!-- Карточка 1 -->
+        <div class="team-card" id="team1">
+            <div class="team-card-header" onclick="toggleTeam(this)">
+                <div class="team-avatar" style="background: var(--primary);">И</div>
+                <div class="team-info">
+                    <h4>Иван Петров</h4>
+                    <p>Генеральный директор</p>
+                </div>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="team-details">
+                <div class="details-content">
+                    <img src="images/32.jpg" alt="Иван Петров" class="details-photo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%230b3b5c%22/><text x=%2250%22 y=%2265%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%23f59e0b%22>И</text></svg>'">
+                    <div class="details-text">
+                        <p><strong>Стаж:</strong> 12 лет</p>
+                        <p><strong>Телефон:</strong> +7 (4852) 00-01</p>
+                        <p><strong>Email:</strong> i.petrov@translogistic.ru</p>
+                        <a href="#" class="contact-link">Написать →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Карточка 2 (аналогично, поменяйте цвет фона) -->
+        <div class="team-card" id="team2">
+            <div class="team-card-header" onclick="toggleTeam(this)">
+                <div class="team-avatar" style="background: var(--accent);">Е</div>
+                <div class="team-info">
+                    <h4>Елена Соколова</h4>
+                    <p>Руководитель отдела логистики</p>
+                </div>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="team-details">
+                <div class="details-content">
+                    <img src="images/44.jpg" alt="Елена Соколова" class="details-photo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23f59e0b%22/><text x=%2250%22 y=%2265%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22white%22>Е</text></svg>'">
+                    <div class="details-text">
+                        <p><strong>Стаж:</strong> 8 лет</p>
+                        <p><strong>Телефон:</strong> +7 (4852) 00-02</p>
+                        <p><strong>Email:</strong> e.sokolova@translogistic.ru</p>
+                        <a href="#" class="contact-link">Написать →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Карточка 3 -->
+        <div class="team-card" id="team3">
+            <div class="team-card-header" onclick="toggleTeam(this)">
+                <div class="team-avatar" style="background: var(--primary-light);">А</div>
+                <div class="team-info">
+                    <h4>Алексей Смирнов</h4>
+                    <p>Ведущий менеджер</p>
+                </div>
+                <span class="expand-icon">▼</span>
+            </div>
+            <div class="team-details">
+                <div class="details-content">
+                    <img src="images/75.jpg" alt="Алексей Смирнов" class="details-photo" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2280%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%231e5570%22/><text x=%2250%22 y=%2265%22 font-size=%2250%22 text-anchor=%22middle%22 fill=%22%23f59e0b%22>А</text></svg>'">
+                    <div class="details-text">
+                        <p><strong>Стаж:</strong> 5 лет</p>
+                        <p><strong>Телефон:</strong> +7 (4852) 00-03</p>
+                        <p><strong>Email:</strong> a.smirnov@translogistic.ru</p>
+                        <a href="#" class="contact-link">Написать →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <button class="sidebar-btn" onclick="alert('Спасибо за интерес к нашей команде! Мы свяжемся с вами.')">
+        ✉ Связаться с командой
+    </button>
+</div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo" style="color: white; margin-bottom: 16px;">Транс<span style="color: var(--accent);">Логистик</span></div>
+                    <p style="color: #cbd5e1;">© 2026 Транспортная компания.<br>Все права защищены.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 style="color: white;">Навигация</h4>
+                    <a href="index.html">Главная</a>
+                    <a href="services.html">Услуги</a>
+                    <a href="about.html">О компании</a>
+                    <a href="news.html">Новости</a>
+                </div>
+                <div class="footer-links">
+                    <h4 style="color: white;">Инфо</h4>
+                    <a href="reviews.html">Отзывы</a>
+                    <a href="contacts.html">Контакты</a>
+                    <a href="login.html">Авторизация</a>
+                </div>
+                <div>
+                    <h4 style="color: white;">Контакты</h4>
+                    <p style="color: #cbd5e1;">г. Ярославль, ул. Строителей, 5</p>
+                    <p style="color: #cbd5e1;">+7 (4852) 00-00-00</p>
+                    <p style="color: #cbd5e1;">info@translogistic.ru</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTeam(headerElement) {
+            // Находим родительскую карточку
+            const card = headerElement.closest('.team-card');
+            
+            // Проверяем, активна ли уже эта карточка
+            const isActive = card.classList.contains('active');
+            // Закрываем все карточки (опционально - чтобы одновременно была открыта только одна)
+            const allCards = document.querySelectorAll('.team-card');
+            allCards.forEach(c => {
+                c.classList.remove('active');
+            });
+            
+            // Если карточка не была активна, открываем её
+            if (!isActive) {
+                card.classList.add('active');
+            }
+            // Если была активна - оставляем закрытой (мы уже убрали класс)
+        }
+
+        // Добавляем обработчик для кнопки "Связаться с командой"
+        document.addEventListener('DOMContentLoaded', function() {
+            // Можно добавить небольшую анимацию при загрузке
+            console.log('Страница загружена, команда готова к работе!');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты — ТрансЛогистик</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Дополнительные стили для страницы контактов */
+        .contact-card {
+            background: white;
+            border-radius: 24px;
+            padding: 25px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .info-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            padding: 20px;
+            background: var(--gray-bg);
+            border-radius: 20px;
+            transition: background 0.3s ease;
+        }
+        .info-item:hover {
+            background: #eef2f6;
+        }
+        .info-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .info-icon img {
+            width: 28px;
+            height: 28px;
+            filter: brightness(0) invert(1);
+        }
+        .department-card {
+            background: white;
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid var(--gray-border);
+            transition: all 0.3s ease;
+        }
+        .department-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 25px -8px rgba(245,158,11,0.2);
+        }
+        .department-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            transition: transform 0.3s ease;
+        }
+        .department-card:hover .department-icon {
+            transform: scale(1.1);
+            background: var(--accent);
+        }
+        .department-icon img {
+            width: 40px;
+            height: 40px;
+            filter: brightness(0) invert(1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">Транс<span>Логистик</span></div>
+            <div class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="services.html">Услуги</a>
+                <a href="about.html">О нас</a>
+                <a href="news.html">Новости</a>
+                <a href="reviews.html">Отзывы</a>
+                <a href="contacts.html">Контакты</a>
+                <a href="login.html">Вход</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="index.html">Главная</a> / <span>Контакты</span>
+        </div>
+        
+        <h1 class="page-title">Контакты</h1>
+        
+        <div class="two-columns">
+            <!-- Левая колонка с картой и адресом -->
+            <div class="content-block">
+                <div class="contact-card" style="padding: 0; overflow: hidden;">
+                    <div style="padding: 30px;">
+                        <h2 style="color: var(--primary); margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                            Как нас найти
+                        </h2>
+                        <div style="border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); margin-bottom: 25px; border: 1px solid var(--gray-border);">
+                            <!-- Яндекс.Карта -->
+                            <script type="text/javascript" charset="utf-8" async 
+                                src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A84764a540abe36a0e31f36c940568ebd04f6da2df291237d63ab663a53892098&amp;width=100%25&amp;height=300&amp;lang=ru_RU&amp;scroll=true">
+                            </script>
+                        </div>
+                    </div>
+                    
+                    <!-- Адрес и режим работы в виде карточек -->
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--gray-border);">
+                        <div style="padding: 30px; border-right: 1px solid var(--gray-border);">
+                            <div style="display: flex; gap: 15px;">
+                                <div class="info-icon">
+                                    <img src="images/7.png" alt="" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2728%27 height=%2728%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z%27/%3E%3C/svg%3E'">
+                                </div>
+                                <div>
+                                    <h3 style="color: var(--primary); font-size: 18px; margin-bottom: 10px;">Адрес</h3>
+                                    <p style="color: var(--text-dark); line-height: 1.6;">
+                                        г. Ярославль,<br>
+                                        ул. Строителей, д. 5<br>
+                                        Бизнес-центр «Логист», офис 312
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="padding: 30px;">
+                            <div style="display: flex; gap: 15px;">
+                                <div class="info-icon">
+                                    <img src="images/5.png" alt="" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2728%27 height=%2728%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z%27/%3E%3C/svg%3E'">
+                                </div>
+                                <div>
+                                    <h3 style="color: var(--primary); font-size: 18px; margin-bottom: 10px;">Режим работы</h3>
+                                    <p style="color: var(--text-dark); line-height: 1.6;">
+                                        Пн-Пт: 9:00 – 20:00<br>
+                                        Сб: 10:00 – 16:00<br>
+                                        Вс: выходной
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Телефоны и email в виде карточек -->
+                    <div style="padding: 30px; border-top: 1px solid var(--gray-border);">
+                        <h3 style="color: var(--primary); font-size: 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                            <img src="images/phone-icon.png" alt="" style="width: 24px; height: 24px;" onerror="this.style.display='none'">
+                            Телефоны и email
+                        </h3>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px;">
+                            <div class="info-item">
+                                <div class="info-icon" style="width: 40px; height: 40px; border-radius: 12px;">
+                                    <img src="images/phone.png" alt="" style="width: 22px; height: 22px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2722%27 height=%2722%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z%27/%3E%3C/svg%3E'">
+                                </div>
+                                <div>
+                                    <p style="font-weight: 600; color: var(--primary); font-size: 14px;">Отдел перевозок</p>
+                                    <p style="color: var(--text-dark);">+7 (4852) 00-00-01</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon" style="width: 40px; height: 40px; border-radius: 12px;">
+                                    <img src="images/email.png" alt="" style="width: 30px; height: 35px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2722%27 height=%2722%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z%27/%3E%3C/svg%3E'">
+                                </div>
+                                <div>
+                                    <p style="font-weight: 600; color: var(--primary); font-size: 14px;">Эл. почта</p>
+                                    <p style="color: var(--text-dark);">info@translogistic.ru</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon" style="width: 40px; height: 40px; border-radius: 12px;">
+                                    <img src="images/feather.png" alt="" style="width: 25px; height: 25px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2722%27 height=%2722%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M20 9h-4V4H8v5H4v11h16V9zm-6 6h-4v-2h4v2z%27/%3E%3C/svg%3E'">
+                                </div>
+                                <div>
+                                    <p style="font-weight: 600; color: var(--primary); font-size: 14px;">Факс</p>
+                                    <p style="color: var(--text-dark);">+7 (4852) 00-00-99</p>
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="info-icon" style="width: 40px; height: 40px; border-radius: 12px;">
+                                    <img src="images/hand.png" alt="" style="width: 30px; height: 30px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2722%27 height=%2722%27 viewBox=%270 0 24 24%27 fill=%27white%27%3E%3Cpath d=%27M21 6h-2v3h-2V6h-2V4h2V1h2v3h2v2zm-6-2v2h-2V4h2zm-6 0v2H7V4h2zm-4 8v-2h2v2H5zm2 4v-2h2v2H7zm2-4v-2h2v2H9zm2 4v-2h2v2h-2zm2-4v-2h2v2h-2zm2 4v-2h2v2h-2zM7 8v2H5V8h2zm10 2v-2h2v2h-2zm-8 8v2H5v-2h2zm10 0v2h-2v-2h2z%27/%3E%3C/svg%3E'">
+                                </div>
+                                <div>
+                                    <p style="font-weight: 600; color: var(--primary); font-size: 14px;">Поддержка</p>
+                                    <p style="color: var(--text-dark);">support@translogistic.ru</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Правая колонка (сайдбар) с формой обратной связи -->
+            <div class="sidebar" style="background: white; border: 1px solid var(--gray-border); padding: 0; overflow: hidden; border-radius: 24px;">
+                <div style="background: linear-gradient(145deg, var(--primary), var(--primary-light)); padding: 30px; color: white;">
+                    <h3 style="color: white; margin-bottom: 10px; font-size: 28px;">Напишите нам</h3>
+                    <p style="color: rgba(255,255,255,0.9);">Заполните форму и мы свяжемся с вами в ближайшее время</p>
+                </div>
+                
+                <div style="padding: 30px;">
+                    <div class="feedback-form" id="contactForm" style="padding: 0; border: none; background: transparent;">
+                        <div class="form-row">
+                            <input type="text" id="contactName" placeholder="Ваше имя *">
+                            <div id="contactNameError" class="error-message">Введите имя</div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <input type="tel" id="contactPhone" placeholder="Телефон *">
+                            <div id="contactPhoneError" class="error-message">Введите корректный телефон</div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <input type="email" id="contactEmail" placeholder="E-mail">
+                            <div id="contactEmailError" class="error-message">Введите корректный e-mail</div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <textarea id="contactMessage" rows="4" placeholder="Ваше сообщение *"></textarea>
+                            <div id="contactMessageError" class="error-message">Напишите сообщение</div>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px; font-size: 14px; color: var(--text-muted);">
+                            * — обязательные поля
+                        </div>
+                        
+                        <button class="btn" id="sendContact" style="width: 100%;">Отправить сообщение</button>
+                        
+                        <p style="margin-top: 16px; color: green; display: none; text-align: center; font-weight: 600;" id="contactSuccessMsg">
+                            ✓ Сообщение отправлено
+                        </p>
+                    </div>
+                    
+                    <!-- Реквизиты компании в стильном блоке -->
+                    <div style="margin-top: 30px; background: var(--gray-bg); border-radius: 20px; padding: 20px;">
+                        <h4 style="color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
+                            <img src="images/document-icon.png" alt="" style="width: 20px; height: 20px;" onerror="this.style.display='none'">
+                            Реквизиты компании
+                        </h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 14px;">
+                            <div>
+                                <p style="color: var(--text-muted); margin-bottom: 5px;">ООО «ТрансЛогистик»</p>
+                                <p style="color: var(--text-muted);">ИНН 7604123456</p>
+                            </div>
+                            <div>
+                                <p style="color: var(--text-muted);">КПП 760401001</p>
+                                <p style="color: var(--text-muted);">ОГРН 1107604000123</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Блок с контактами отделов (улучшенные карточки) -->
+        <div style="margin: 60px 0;">
+            <h2 style="color: var(--primary); font-size: 32px; text-align: center; margin-bottom: 40px;">Наши отделы</h2>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px;">
+                <div class="department-card">
+                    <div class="department-icon">
+                        <img src="images/8.png" alt="">
+                    </div>
+                    <h4 style="color: var(--primary); font-size: 22px; margin-bottom: 10px;">Отдел перевозок</h4>
+                    <p style="color: var(--text-muted); margin-bottom: 8px;">+7 (4852) 00-00-00</p>
+                    <p style="color: var(--accent); font-weight: 600;">perevozki@translogistic.ru</p>
+                    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed var(--gray-border);">
+                        <p style="color: var(--text-muted); font-size: 14px;">Консультации по доставке</p>
+                    </div>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-icon">
+                        <img src="images/4.1.png" alt="">
+                    </div>
+                    <h4 style="color: var(--primary); font-size: 22px; margin-bottom: 10px;">Экспедирование</h4>
+                    <p style="color: var(--text-muted); margin-bottom: 8px;">+7 (4852) 00-00-02</p>
+                    <p style="color: var(--accent); font-weight: 600;">exped@translogistic.ru</p>
+                    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed var(--gray-border);">
+                        <p style="color: var(--text-muted); font-size: 14px;">Сопровождение и документы</p>
+                    </div>
+                </div>
+                
+                <div class="department-card">
+                    <div class="department-icon">
+                        <img src="images/feather.png" alt="">
+                    </div>
+                    <h4 style="color: var(--primary); font-size: 22px; margin-bottom: 10px;">Бухгалтерия</h4>
+                    <p style="color: var(--text-muted); margin-bottom: 8px;">+7 (4852) 00-00-03</p>
+                    <p style="color: var(--accent); font-weight: 600;">buh@translogistic.ru</p>
+                    <div style="margin-top: 15px; padding-top: 15px; border-top: 1px dashed var(--gray-border);">
+                        <p style="color: var(--text-muted); font-size: 14px;">Документооборот и оплаты</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo" style="color: white; margin-bottom: 16px;">Транс<span style="color: var(--accent);">Логистик</span></div>
+                    <p style="color: #cbd5e1;">© 2026 Транспортная компания.<br>Все права защищены.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 style="color: white;">Навигация</h4>
+                    <a href="index.html">Главная</a>
+                    <a href="services.html">Услуги</a>
+                    <a href="about.html">О компании</a>
+                    <a href="news.html">Новости</a>
+                </div>
+                <div class="footer-links">
+                    <h4 style="color: white;">Инфо</h4>
+                    <a href="reviews.html">Отзывы</a>
+                    <a href="contacts.html">Контакты</a>
+                    <a href="login.html">Авторизация</a>
+                </div>
+                <div>
+                    <h4 style="color: white;">Контакты</h4>
+                    <p style="color: #cbd5e1;">г. Ярославль, ул. Строителей, 5</p>
+                    <p style="color: #cbd5e1;">+7 (4852) 00-00-00</p>
+                    <p style="color: #cbd5e1;">info@translogistic.ru</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Валидация формы обратной связи
+        document.addEventListener('DOMContentLoaded', function() {
+            const sendContact = document.getElementById('sendContact');
+            if (sendContact) {
+                sendContact.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    let name = document.getElementById('contactName').value.trim();
+                    let phone = document.getElementById('contactPhone').value.trim();
+                    let email = document.getElementById('contactEmail').value.trim();
+                    let message = document.getElementById('contactMessage').value.trim();
+                    let isValid = true;
+                    
+                    document.querySelectorAll('#contactForm .error-message').forEach(el => el.classList.remove('show'));
+                    
+                    if (name === '') {
+                        document.getElementById('contactNameError').classList.add('show');
+                        isValid = false;
+                    }
+                    
+                    if (phone === '' || phone.replace(/[^0-9]/g, '').length < 10) {
+                        document.getElementById('contactPhoneError').classList.add('show');
+                        isValid = false;
+                    }
+                    
+                    if (email !== '' && !email.includes('@')) {
+                        document.getElementById('contactEmailError').classList.add('show');
+                        isValid = false;
+                    }
+                    
+                    if (message === '') {
+                        document.getElementById('contactMessageError').classList.add('show');
+                        isValid = false;
+                    }
+                    
+                    if (isValid) {
+                        document.getElementById('contactSuccessMsg').style.display = 'block';
+                        setTimeout(() => document.getElementById('contactSuccessMsg').style.display = 'none', 5000);
+                        document.getElementById('contactForm').reset();
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

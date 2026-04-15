@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отзывы — ТрансЛогистик</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Дополнительные стили для страницы отзывов */
+        .reviews-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .review-card {
+            background: white;
+            border: 1px solid var(--gray-border);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px -10px rgba(0,0,0,0.15);
+            border-color: var(--accent);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .review-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+
+        .review-author-info h3 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .review-rating {
+            display: flex;
+            gap: 3px;
+        }
+
+        .star {
+            color: var(--text-muted);
+            font-size: 18px;
+            cursor: default;
+        }
+
+        .star.filled {
+            color: var(--accent);
+        }
+
+        .review-date {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .review-text {
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .review-cargo {
+            color: var(--primary);
+            font-weight: 500;
+            display: inline-block;
+            background: var(--gray-bg);
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 14px;
+        }
+
+        /* Сортировка */
+        .sort-bar {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-bottom: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .sort-label {
+            color: var(--text-muted);
+        }
+
+        .sort-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            padding-bottom: 3px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .sort-link.active {
+            color: var(--primary);
+            font-weight: 600;
+            border-bottom-color: var(--accent);
+        }
+
+        .sort-link:hover {
+            color: var(--accent);
+        }
+
+        /* Пагинация */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 40px 0 30px;
+            flex-wrap: wrap;
+        }
+
+        .pagination-item {
+            min-width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: 1px solid transparent;
+            padding: 0 5px;
+        }
+
+        .pagination-item.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .pagination-item:not(.active):not(.dots) {
+            background: var(--gray-bg);
+            color: var(--primary);
+        }
+
+        .pagination-item:not(.active):not(.dots):hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .pagination-item.dots {
+            background: transparent;
+            cursor: default;
+            width: auto;
+        }
+
+        .pagination-item.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Рейтинг звездами в форме */
+        .rating-input {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .rating-label {
+            color: var(--text-muted);
+            margin-right: 15px;
+            display: inline-block;
+        }
+
+        .rating-stars {
+            display: inline-flex;
+            gap: 5px;
+            vertical-align: middle;
+        }
+
+        .rating-star {
+            font-size: 30px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-muted);
+        }
+
+        .rating-star:hover,
+        .rating-star.hover,
+        .rating-star.selected {
+            color: var(--accent);
+            transform: scale(1.1);
+        }
+
+        /* Форма отзыва */
+        .review-form-section {
+            background: var(--gray-bg);
+            border-radius: 32px;
+            padding: 40px;
+            margin-top: 30px;
+        }
+
+        .review-form-title {
+            color: var(--primary);
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .review-form {
+            max-width: 100%;
+            background: transparent;
+            padding: 0;
+            border: none;
+        }
+
+        .success-message {
+            margin-top: 16px;
+            color: #22c55e;
+            display: none;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* Информация о рейтинге */
+        .rating-summary {
+            background: var(--primary);
+            color: white;
+            border-radius: 24px;
+            padding: 25px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .average-rating {
+            text-align: center;
+        }
+
+        .average-number {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .average-stars {
+            margin: 10px 0;
+        }
+
+        .total-reviews {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .rating-bars {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .rating-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .rating-bar-label {
+            width: 30px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .rating-bar-bg {
+            flex: 1;
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .rating-bar-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 4px;
+            width: 0%;
+        }
+
+        .rating-bar-count {
+            width: 30px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Для мобильных */
+        @media (max-width: 768px) {
+            .review-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .rating-summary {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .rating-bar-item {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">Транс<span>Логистик</span></div>
+            <div class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="services.html">Услуги</a>
+                <a href="about.html">О нас</a>
+                <a href="news.html">Новости</a>
+                <a href="reviews.html" style="color: var(--accent);">Отзывы</a>
+                <a href="contacts.html">Контакты</a>
+                <a href="login.html">Вход</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <div class="breadcrumbs">
+            <a href="index.html">Главная</a> / <span>Отзывы</span>
+        </div>
+        
+        <h1 class="page-title">Отзывы наших клиентов</h1>
+        
+        <div class="content-single">
+            
+            <!-- Краткая статистика рейтингов -->
+            <div class="rating-summary" id="ratingSummary">
+                <!-- Заполняется через JS -->
+            </div>
+            
+            <!-- Сортировка -->
+            <div class="sort-bar">
+                <span class="sort-label">Сортировать:</span>
+                <span class="sort-link active" data-sort="date">по дате</span>
+                <span class="sort-link" data-sort="rating">по рейтингу</span>
+            </div>
+            
+            <!-- Контейнер для страниц отзывов -->
+            <div id="reviewsContainer"></div>
+            
+            <!-- Пагинация -->
+            <div class="pagination" id="pagination"></div>
+            
+            <!-- Форма добавления отзыва -->
+            <div class="review-form-section">
+                <h2 class="review-form-title">Оставить отзыв</h2>
+                
+                <div class="review-form" id="reviewForm">
+                    
+                    <!-- Рейтинг звёздами -->
+                    <div class="rating-input">
+                        <span class="rating-label">Ваша оценка:</span>
+                        <div class="rating-stars" id="ratingStars">
+                            <span class="rating-star" data-rating="1">★</span>
+                            <span class="rating-star" data-rating="2">★</span>
+                            <span class="rating-star" data-rating="3">★</span>
+                            <span class="rating-star" data-rating="4">★</span>
+                            <span class="rating-star" data-rating="5">★</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <input type="text" id="reviewName" placeholder="Ваше имя *">
+                        <div id="reviewNameError" class="error-message">Введите имя</div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <input type="text" id="reviewCity" placeholder="Город (необязательно)">
+                    </div>
+                    
+                    <div class="form-row">
+                        <textarea id="reviewText" rows="4" placeholder="Ваш отзыв *"></textarea>
+                        <div id="reviewTextError" class="error-message">Напишите отзыв</div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <input type="text" id="reviewCargo" placeholder="Что перевозили? (необязательно)">
+                    </div>
+                    
+                    <button class="btn" id="sendReview" style="width: 100%;">Отправить отзыв</button>
+                    <p class="success-message" id="reviewSuccessMsg">✓ Спасибо! Отзыв будет опубликован после проверки</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo" style="color: white; margin-bottom: 16px;">Транс<span style="color: var(--accent);">Логистик</span></div>
+                    <p style="color: #cbd5e1;">© 2026 Транспортная компания.<br>Все права защищены.</p>
+                </div>
+                <div class="footer-links">
+                    <h4 style="color: white;">Навигация</h4>
+                    <a href="index.html">Главная</a>
+                    <a href="services.html">Услуги</a>
+                    <a href="about.html">О компании</a>
+                    <a href="news.html">Новости</a>
+                </div>
+                <div class="footer-links">
+                    <h4 style="color: white;">Инфо</h4>
+                    <a href="reviews.html">Отзывы</a>
+                    <a href="contacts.html">Контакты</a>
+                    <a href="login.html">Авторизация</a>
+                </div>
+                <div>
+                    <h4 style="color: white;">Контакты</h4>
+                    <p style="color: #cbd5e1;">г. Ярославль, ул. Строителей, 5</p>
+                    <p style="color: #cbd5e1;">+7 (4852) 00-00-00</p>
+                    <p style="color: #cbd5e1;">info@translogistic.ru</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // База данных отзывов (оставил 7 штук для пагинации)
+        const reviewsDB = [
+            {
+                id: 1,
+                name: 'Алексей Морозов',
+                initial: 'А',
+                avatarColor: 'var(--primary)',
+                rating: 5,
+                date: '2026-02-15',
+                text: 'Отличная компания! Пользовался услугами для доставки стройматериалов из Москвы в Ярославль. Всё привезли вовремя, без повреждений. Отдельное спасибо менеджеру за консультацию по документам.',
+                cargo: 'стройматериалы, 850 кг',
+                city: 'Ярославль'
+            },
+            {
+                id: 2,
+                name: 'Екатерина Волкова',
+                initial: 'Е',
+                avatarColor: 'var(--accent)',
+                rating: 4,
+                date: '2026-02-02',
+                text: 'Перевозили сборный груз для интернет-магазина. Всё организовано чётко, трекинг работает, всегда знала, где находится посылка. Единственное — доставка в отдалённый район заняла на день дольше, но предупредили заранее.',
+                cargo: 'сборный, 120 кг',
+                city: 'Москва'
+            },
+            {
+                id: 3,
+                name: 'Дмитрий Соколов',
+                initial: 'Д',
+                avatarColor: 'var(--primary-light)',
+                rating: 5,
+                date: '2026-01-18',
+                text: 'Не первый раз обращаюсь в ТрансЛогистик. Радует, что компания растёт — появился удобный калькулятор на сайте, можно быстро прикинуть стоимость. Экспедитор на месте всегда на связи. Рекомендую!',
+                cargo: 'оборудование, 2,3 т',
+                city: 'Санкт-Петербург'
+            },
+            {
+                id: 4,
+                name: 'Ольга Новикова',
+                initial: 'О',
+                avatarColor: 'var(--accent)',
+                rating: 5,
+                date: '2026-01-10',
+                text: 'Заказывала доставку личных вещей из СПб в Ярославль. Очень переживала за сохранность, но упаковали всё просто идеально — в плёнку, коробки, даже мебель не поцарапали. Спасибо команде!',
+                cargo: 'личные вещи, 400 кг',
+                city: 'Ярославль'
+            },
+            {
+                id: 5,
+                name: 'Сергей Иванов',
+                initial: 'С',
+                avatarColor: 'var(--primary)',
+                rating: 5,
+                date: '2025-12-20',
+                text: 'Перевозил негабаритный груз (станок). Очень профессиональный подход, все риски учли, погрузку организовали с выездом в ночное время. Спасибо за качество!',
+                cargo: 'негабарит, 3,5 т',
+                city: 'Кострома'
+            },
+            {
+                id: 6,
+                name: 'Анна Белова',
+                initial: 'А',
+                avatarColor: 'var(--accent)',
+                rating: 4,
+                date: '2025-12-05',
+                text: 'Пользовалась услугами компании для перевозки товаров для магазина. Всё хорошо, но в этот раз была небольшая задержка на сутки. Однако менеджер предупредил заранее, так что претензий нет.',
+                cargo: 'товары, 250 кг',
+                city: 'Рыбинск'
+            },
+            {
+                id: 7,
+                name: 'Михаил Козлов',
+                initial: 'М',
+                avatarColor: 'var(--primary-light)',
+                rating: 5,
+                date: '2025-11-28',
+                text: 'Отличная компания! Возили оборудование в Казань. Цена адекватная, водитель опытный, машина новая. Буду обращаться еще.',
+                cargo: 'оборудование, 1,2 т',
+                city: 'Ярославль'
+            }
+        ];
+
+        // Текущее состояние
+        let currentPage = 1;
+        let currentSort = 'date'; // 'date' или 'rating'
+        let currentRating = 5; // Выбранный рейтинг в форме
+        const reviewsPerPage = 3; // Показываем по 3 отзыва на странице
+
+        // Функция для форматирования даты
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const months = [
+                'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+                'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+            ];
+            return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+        }
+
+        // Функция для сортировки отзывов
+        function sortReviews(reviews, sortType) {
+            const sorted = [...reviews];
+            if (sortType === 'date') {
+                sorted.sort((a, b) => new Date(b.date) - new Date(a.date));
+            } else if (sortType === 'rating') {
+                sorted.sort((a, b) => b.rating - a.rating || new Date(b.date) - new Date(a.date));
+            }
+            return sorted;
+        }
+
+        // Функция для отображения отзывов
+        function displayReviews() {
+            const container = document.getElementById('reviewsContainer');
+            if (!container) return;
+
+            // Сортируем отзывы
+            const sortedReviews = sortReviews(reviewsDB, currentSort);
+            
+            // Рассчитываем пагинацию
+            const totalPages = Math.ceil(sortedReviews.length / reviewsPerPage);
+            const startIndex = (currentPage - 1) * reviewsPerPage;
+            const endIndex = startIndex + reviewsPerPage;
+            const pageReviews = sortedReviews.slice(startIndex, endIndex);
+
+            // Обновляем статистику
+            updateRatingSummary();
+
+            // Генерируем HTML
+            let html = '<div class="reviews-list">';
+            
+            pageReviews.forEach(review => {
+                html += `
+                    <div class="review-card" data-id="${review.id}">
+                        <div class="review-header">
+                            <div class="review-author">
+                                <div class="review-avatar" style="background: ${review.avatarColor};">${review.initial}</div>
+                                <div class="review-author-info">
+                                    <h3>${review.name}</h3>
+                                    <div class="review-rating">
+                                        ${generateStars(review.rating)}
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="review-date">${formatDate(review.date)}</span>
+                        </div>
+                        <p class="review-text">${review.text}</p>
+                        <span class="review-cargo">Груз: ${review.cargo}</span>
+                        ${review.city ? `<span style="margin-left: 10px; color: var(--text-muted); font-size: 14px;">г. ${review.city}</span>` : ''}
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+
+            // Обновляем пагинацию
+            updatePagination(totalPages);
+        }
+
+        // Функция для генерации звезд
+        function generateStars(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                stars += `<span class="star ${i <= rating ? 'filled' : ''}">★</span>`;
+            }
+            return stars;
+        }
+
+        // Функция для обновления сводки по рейтингам
+        function updateRatingSummary() {
+            const summary = document.getElementById('ratingSummary');
+            if (!summary) return;
+
+            const total = reviewsDB.length;
+            const sum = reviewsDB.reduce((acc, r) => acc + r.rating, 0);
+            const average = (sum / total).toFixed(1);
+
+            // Подсчет количества каждого рейтинга
+            const ratingCounts = [0, 0, 0, 0, 0];
+            reviewsDB.forEach(r => {
+                ratingCounts[r.rating - 1]++;
+            });
+
+            let barsHtml = '';
+            for (let i = 5; i >= 1; i--) {
+                const count = ratingCounts[i - 1];
+                const percent = (count / total * 100).toFixed(0);
+                barsHtml += `
+                    <div class="rating-bar-item">
+                        <span class="rating-bar-label">${i} ★</span>
+                        <div class="rating-bar-bg">
+                            <div class="rating-bar-fill" style="width: ${percent}%"></div>
+                        </div>
+                        <span class="rating-bar-count">${count}</span>
+                    </div>
+                `;
+            }
+
+            summary.innerHTML = `
+                <div class="average-rating">
+                    <div class="average-number">${average}</div>
+                    <div class="average-stars">${generateStars(Math.round(average))}</div>
+                    <div class="total-reviews">на основе ${total} отзывов</div>
+                </div>
+                <div class="rating-bars">
+                    ${barsHtml}
+                </div>
+            `;
+        }
+
+        // Функция для обновления пагинации
+        function updatePagination(totalPages) {
+            const pagination = document.getElementById('pagination');
+            if (!pagination) return;
+
+            let html = '';
+
+            // Кнопка "Предыдущая"
+            html += `<span class="pagination-item ${currentPage === 1 ? 'disabled' : ''}" data-page="${currentPage - 1}" ${currentPage === 1 ? '' : 'onclick="changePage(' + (currentPage - 1) + ')"'}>←</span>`;
+
+            // Номера страниц
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                    html += `<span class="pagination-item ${i === currentPage ? 'active' : ''}" data-page="${i}" onclick="changePage(${i})">${i}</span>`;
+                } else if (i === currentPage - 2 || i === currentPage + 2) {
+                    html += `<span class="pagination-item dots">...</span>`;
+                }
+            }
+
+            // Кнопка "Следующая"
+            html += `<span class="pagination-item ${currentPage === totalPages ? 'disabled' : ''}" data-page="${currentPage + 1}" ${currentPage === totalPages ? '' : 'onclick="changePage(' + (currentPage + 1) + ')"'}>→</span>`;
+
+            pagination.innerHTML = html;
+        }
+
+        // Функция для смены страницы
+        window.changePage = function(page) {
+            const totalPages = Math.ceil(reviewsDB.length / reviewsPerPage);
+            if (page < 1 || page > totalPages) return;
+            
+            currentPage = page;
+            displayReviews();
+            
+            // Плавный скролл к началу отзывов
+            document.querySelector('.content-single').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
+        // Инициализация сортировки
+        function initSorting() {
+            const sortLinks = document.querySelectorAll('.sort-link');
+            sortLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    const sortType = this.getAttribute('data-sort');
+                    
+                    // Обновляем активный класс
+                    sortLinks.forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Меняем сортировку и сбрасываем на первую страницу
+                    currentSort = sortType;
+                    currentPage = 1;
+                    displayReviews();
+                });
+            });
+        }
+
+        // Инициализация звезд рейтинга в форме
+        function initRatingStars() {
+            const stars = document.querySelectorAll('.rating-star');
+            const ratingStars = document.getElementById('ratingStars');
+            
+            stars.forEach(star => {
+                // При клике
+                star.addEventListener('click', function() {
+                    const rating = parseInt(this.getAttribute('data-rating'));
+                    currentRating = rating;
+                    
+                    stars.forEach(s => s.classList.remove('selected'));
+                    for (let i = 0; i < rating; i++) {
+                        stars[i].classList.add('selected');
+                    }
+                });
+
+                // При наведении
+                star.addEventListener('mouseenter', function() {
+                    const rating = parseInt(this.getAttribute('data-rating'));
+                    
+                    stars.forEach(s => s.classList.remove('hover'));
+                    for (let i = 0; i < rating; i++) {
+                        stars[i].classList.add('hover');
+                    }
+                });
+
+                ratingStars.addEventListener('mouseleave', function() {
+                    stars.forEach(s => s.classList.remove('hover'));
+                });
+            });
+        }
+
+        // Обработка формы отправки отзыва
+        function initReviewForm() {
+            const sendReview = document.getElementById('sendReview');
+            if (sendReview) {
+                sendReview.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    let name = document.getElementById('reviewName').value.trim();
+                    let text = document.getElementById('reviewText').value.trim();
+                    let city = document.getElementById('reviewCity').value.trim();
+                    let cargo = document.getElementById('reviewCargo').value.trim();
+                    let isValid = true;
+                    
+                    document.querySelectorAll('#reviewForm .error-message').forEach(el => el.classList.remove('show'));
+                    
+                    if (name === '') {
+                        document.getElementById('reviewNameError').classList.add('show');
+                        isValid = false;
+                    }
+                    
+                    if (text === '') {
+                        document.getElementById('reviewTextError').classList.add('show');
+                        isValid = false;
+                    }
+                    
+                    if (isValid) {
+                        // Показываем успех
+                        document.getElementById('reviewSuccessMsg').style.display = 'block';
+                        setTimeout(() => document.getElementById('reviewSuccessMsg').style.display = 'none', 3000);
+                        
+                        // Сбрасываем форму
+                        document.getElementById('reviewForm').reset();
+                        
+                        // Сбрасываем звезды
+                        document.querySelectorAll('.rating-star').forEach(s => s.classList.remove('selected'));
+                        currentRating = 5;
+                        
+                        // Здесь можно добавить реальную отправку на сервер
+                        console.log('Новый отзыв:', { name, text, city, cargo, rating: currentRating });
+                    }
+                });
+            }
+        }
+
+        // Загрузка при старте
+        document.addEventListener('DOMContentLoaded', function() {
+            displayReviews();
+            initSorting();
+            initRatingStars();
+            initReviewForm();
+        });
+
+    </script>
+</body>
+</html>
